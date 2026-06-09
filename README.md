@@ -27,7 +27,7 @@ Manual low-VRAM clone:
 git clone https://github.com/gjnave/bernini-native-windows.git
 cd bernini-native-windows
 install_wan2gp_bernini_lowvram.bat
-run_wan2gp_bernini.bat
+RUN_GUI.bat
 ```
 
 To immediately prove generation works after install, double-click:
@@ -101,8 +101,10 @@ logs\                  install breadcrumbs
 Low-VRAM:
 
 ```bat
-run_wan2gp_bernini.bat
+RUN_GUI.bat
 ```
+
+This launches the Wan2GP Gradio GUI for Bernini and opens the browser by default. It calls `run_wan2gp_bernini.bat` under the hood, so advanced options such as `--profile 4.5`, `--port 7861`, or `--no-open` still work. The Bernini prompt area includes a trained-task prefix dropdown with the `default`, `t2i`, `t2v`, `i2i`, `r2i`, `i2v`, `v2v`, `r2v`, `vi2v`, `rv2v`, `ads2v`, `vrc2v`, and `mv2v` prefixes.
 
 One-click smoke render:
 

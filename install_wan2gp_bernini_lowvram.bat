@@ -194,6 +194,11 @@ python "%ROOT%\tools\configure_wan2gp.py" --root "%ROOT%" --profile "%MEMORY_PRO
 if errorlevel 1 exit /b 1
 
 echo.
+echo [STEP] Adding Bernini prompt prefix dropdown to Wan2GP GUI
+python "%ROOT%\tools\patch_wan2gp_prompt_prefixes.py" --repo "%WANGP_DIR%"
+if errorlevel 1 exit /b 1
+
+echo.
 echo [STEP] Verifying CUDA and fast attention
 python "%ROOT%\tools\verify_wan2gp_env.py" --repo "%WANGP_DIR%" --attention "%ATTENTION%" --require-fast-attention
 if errorlevel 1 exit /b 1

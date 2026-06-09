@@ -8,6 +8,7 @@ set "PORT=7860"
 set "ATTENTION=auto"
 set "MEMORY_PROFILE=4"
 set "EXTRA_ARGS="
+set "OPEN_BROWSER=1"
 
 :parse_args
 if "%~1"=="" goto parsed_args
@@ -26,6 +27,11 @@ if /i "%~1"=="--attention" (
 if /i "%~1"=="--profile" (
     set "MEMORY_PROFILE=%~2"
     shift
+    shift
+    goto parse_args
+)
+if /i "%~1"=="--no-open" (
+    set "OPEN_BROWSER=0"
     shift
     goto parse_args
 )
@@ -65,5 +71,11 @@ echo Attention:%ATTENTION%
 if defined HF_HUB_OFFLINE echo Hub:      offline
 echo.
 
+python "%ROOT%\tools\patch_wan2gp_prompt_prefixes.py" --repo "%WANGP_DIR%"
+if errorlevel 1 exit /b 1
+
+set "OPEN_ARG=--open-browser"
+if "%OPEN_BROWSER%"=="0" set "OPEN_ARG="
+
 cd /d "%WANGP_DIR%"
-python wgp.py --profile "%MEMORY_PROFILE%" --attention "%ATTENTION%" --server-port "%PORT%" %EXTRA_ARGS%
+python wgp.py --profile "%MEMORY_PROFILE%" --attention "%ATTENTION%" --server-port "%PORT%" %OPEN_ARG% %EXTRA_ARGS%
