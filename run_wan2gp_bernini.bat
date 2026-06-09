@@ -66,4 +66,4 @@ if defined HF_HUB_OFFLINE echo Hub:      offline
 echo.
 
 cd /d "%WANGP_DIR%"
-python wgp.py --lock-model --profile "%MEMORY_PROFILE%" --attention "%ATTENTION%" --server-port "%PORT%" %EXTRA_ARGS%
+python wgp.py --profile "%MEMORY_PROFILE%" --attention "%ATTENTION%" --server-port "%PORT%" %EXTRA_ARGS%
