@@ -1,0 +1,13 @@
+.venv/
+.cache/
+_build/
+vendor/
+models/
+outputs/
+logs/*.log
+logs/*.txt
+config/model_profile.cmd
+config/bernini_renderer_local/
+*.pyc
+__pycache__/
+.pytest_cache/
