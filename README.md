@@ -30,6 +30,14 @@ install_wan2gp_bernini_lowvram.bat
 run_wan2gp_bernini.bat
 ```
 
+To immediately prove generation works after install, double-click:
+
+```bat
+run_bernini_smoke.bat
+```
+
+It verifies CUDA/fast attention, checks missing model files, renders a five-frame Bernini MP4, and opens `outputs-wan2gp\smoke`.
+
 ## Requirements
 
 - Windows with an NVIDIA CUDA GPU.
@@ -94,6 +102,12 @@ Low-VRAM:
 
 ```bat
 run_wan2gp_bernini.bat
+```
+
+One-click smoke render:
+
+```bat
+run_bernini_smoke.bat
 ```
 
 Native:
