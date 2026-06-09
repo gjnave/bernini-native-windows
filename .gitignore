@@ -8,6 +8,7 @@ outputs/
 outputs-wan2gp/
 logs/*.log
 logs/*.txt
+logs/*.json
 config/model_profile.cmd
 config/bernini_renderer_local/
 *.pyc

@@ -97,6 +97,47 @@ FILES = [
 ]
 
 
+# Wan2GP checks the shared core bundle during model load, even for a
+# text-only Bernini smoke job, so the installer must replicate these too.
+WAN21_SHARED_FILES = [
+    ("pose/dw-ll_ucoco_384.onnx", "Wan shared pose preprocessor"),
+    ("pose/yolox_l.onnx", "Wan shared pose preprocessor"),
+    ("scribble/netG_A_latest.pth", "Wan shared scribble preprocessor"),
+    ("flow/raft-things.pth", "Wan shared optical-flow preprocessor"),
+    ("depth/depth_anything_v2_vitl.pth", "Wan shared depth preprocessor"),
+    ("wav2vec/config.json", "Wan shared wav2vec model"),
+    ("wav2vec/feature_extractor_config.json", "Wan shared wav2vec model"),
+    ("wav2vec/model.safetensors", "Wan shared wav2vec model"),
+    ("wav2vec/preprocessor_config.json", "Wan shared wav2vec model"),
+    ("wav2vec/special_tokens_map.json", "Wan shared wav2vec model"),
+    ("wav2vec/tokenizer_config.json", "Wan shared wav2vec model"),
+    ("wav2vec/vocab.json", "Wan shared wav2vec model"),
+    ("chinese-wav2vec2-base/config.json", "Wan shared Chinese wav2vec model"),
+    ("chinese-wav2vec2-base/pytorch_model.bin", "Wan shared Chinese wav2vec model"),
+    ("chinese-wav2vec2-base/preprocessor_config.json", "Wan shared Chinese wav2vec model"),
+    ("roformer/model_bs_roformer_ep_317_sdr_12.9755.ckpt", "Wan shared RoFormer audio separator"),
+    ("roformer/model_bs_roformer_ep_317_sdr_12.9755.yaml", "Wan shared RoFormer audio separator"),
+    ("roformer/download_checks.json", "Wan shared RoFormer audio separator"),
+    ("pyannote/pyannote_model_wespeaker-voxceleb-resnet34-LM.bin", "Wan shared speaker model"),
+    ("pyannote/pytorch_model_segmentation-3.0.bin", "Wan shared speaker model"),
+    ("det_align/detface.pt", "Wan shared face detector"),
+    ("rife4.26.pkl", "Wan shared RIFE temporal upsampler"),
+    ("mask/sam_vit_h_4b8939_fp16.safetensors", "Wan shared MatAnyone mask model"),
+    ("mask/matanyone.safetensors", "Wan shared MatAnyone mask model"),
+    ("mask/config.json", "Wan shared MatAnyone mask model"),
+]
+
+FILES.extend(
+    {
+        "repo": "DeepBeepMeep/Wan2.1",
+        "source": source,
+        "target": f"vendor/Wan2GP/ckpts/{source}",
+        "group": group,
+    }
+    for source, group in WAN21_SHARED_FILES
+)
+
+
 class ReplacePolicy:
     def __init__(self, value: str):
         self.value = value
