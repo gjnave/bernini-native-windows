@@ -1,9 +1,11 @@
 .venv/
+.venv-wan2gp/
 .cache/
 _build/
 vendor/
 models/
 outputs/
+outputs-wan2gp/
 logs/*.log
 logs/*.txt
 config/model_profile.cmd

@@ -2,6 +2,18 @@
 
 This document records every model location used or considered by the installer. Downloads are performed with direct HTTPS URLs through `aria2c.exe` when present and `curl.exe` otherwise. The `hf` CLI is not used.
 
+## Wan2GP Low-VRAM Profile
+
+`install_wan2gp_bernini_lowvram.bat` downloads these files directly into `vendor\Wan2GP\ckpts`. Wan2GP's default checkpoint search paths are `ckpts` and `.`, so the files are visible without using its Hugging Face downloader.
+
+| Source | File | Target | Purpose |
+| --- | --- | --- | --- |
+| https://huggingface.co/DeepBeepMeep/Wan2.2 | `bernini_r_wan2.2_high_quanto_bf16_int8.safetensors` | `vendor\Wan2GP\ckpts\bernini_r_wan2.2_high_quanto_bf16_int8.safetensors` | Bernini high-noise transformer, int8 |
+| https://huggingface.co/DeepBeepMeep/Wan2.2 | `bernini_r_wan2.2_low_quanto_bf16_int8.safetensors` | `vendor\Wan2GP\ckpts\bernini_r_wan2.2_low_quanto_bf16_int8.safetensors` | Bernini low-noise transformer, int8 |
+| https://huggingface.co/DeepBeepMeep/Wan2.1/tree/main/umt5-xxl | `models_t5_umt5-xxl-enc-quanto_int8.safetensors` plus tokenizer files | `vendor\Wan2GP\ckpts\umt5-xxl\` | Wan UMT5 text encoder/tokenizer |
+| https://huggingface.co/DeepBeepMeep/Wan2.1 | `Wan2.1_VAE.safetensors` and `Wan2.1_VAE_upscale2x_imageonly_real_v1.safetensors` | `vendor\Wan2GP\ckpts\` | Wan VAE and optional upsampler |
+| https://huggingface.co/DeepBeepMeep/Wan2.1/tree/main/xlm-roberta-large | CLIP/reference encoder safetensors plus tokenizer files | `vendor\Wan2GP\ckpts\xlm-roberta-large\` | Reference-image encoder assets used by Wan-family modes |
+
 ## Native Profiles
 
 | Profile | Source | Target | Native Status | Notes |
@@ -23,6 +35,9 @@ These are documented because they are smaller and relevant to Bernini replicatio
 ## Upstream Runtime Sources
 
 - Bernini code: https://github.com/bytedance/Bernini
+- Wan2GP runtime: https://github.com/deepbeepmeep/Wan2GP
 - FlashAttention: https://github.com/Dao-AILab/flash-attention
 - VeOmni optional multi-GPU dependency: https://github.com/ByteDance-Seed/VeOmni
-
+- Wan2GP SageAttention Windows wheel: https://github.com/woct0rdho/SageAttention/releases/download/v2.2.0-windows.post4/sageattention-2.2.0+cu130torch2.9.0andhigher.post4-cp39-abi3-win_amd64.whl
+- Wan2GP FlashAttention Windows wheel: https://github.com/deepbeepmeep/kernels/releases/download/Flash2/flash_attn-2.8.3-cp311-cp311-win_amd64.whl
+- Wan2GP GGUF CUDA kernels wheel: https://github.com/deepbeepmeep/kernels/releases/download/GGUF_Kernels/llamacpp_gguf_cuda-1.0.2+torch210cu13py311-cp311-cp311-win_amd64.whl
